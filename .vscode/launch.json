@@ -10,7 +10,7 @@
             "type": "cppdbg",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/build/ocwm",
+            "program": "${workspaceFolder}/build/octm",
             "args": [""],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

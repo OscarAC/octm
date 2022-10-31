@@ -1,0 +1,61 @@
+// <octm/array.hpp>
+// 10/15/2022 - File Creation
+// Copyright(c) 2022-present, Oscar A. Carrera.
+// Distributed under the MIT License (http://opensource.org/licenses/MIT)
+
+#ifndef OCTM_ARRAY_H
+#define OCTM_ARRAY_H
+
+#include "idiom.hpp"
+#include <initializer_list>
+#include <utility>
+
+namespace oc::tm
+{
+
+template <class T, size_t N>
+struct const_array final : with_const_size<N>
+{
+    using value_type = T;
+
+    template <size_t TN, size_t... I>
+    constexpr_ const_array(T const (&arr)[N], std::index_sequence<I...>)
+        : mem_{arr[I]...} {}
+
+    template <class It, size_t... I>
+    constexpr_ const_array(It iterator, std::index_sequence<I...>)
+        : mem_{((void)I, *iterator++)...} {}
+
+    constexpr_ const_array(std::initializer_list<T> list)
+        : const_array(list.begin(), std::make_index_sequence<N>()) {}
+
+    constexpr_ const_array(T const (&arr)[N])
+        : const_array(arr, std::make_index_sequence<N>()) {}
+
+    constexpr_ const T &operator[](const size_t I) const noexcept
+    {
+        return mem_[I];
+    }
+
+    constexpr_ operator const T &() const noexcept
+    {
+        return mem_;
+    }
+
+    template <size_t I>
+    constexpr_ const T &get() const
+    {
+        static_assert_(I < N);
+        return mem_[I];
+    }
+
+  private:
+    T mem_[N] = {};
+};
+
+template <class... T>
+const_array(T... type) -> const_array<variadic_reduce_t<T...>,
+                                         sizeof...(T)>;
+}
+
+#endif
