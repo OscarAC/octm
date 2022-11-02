@@ -30,21 +30,17 @@ endif()
 enable_testing()
 
 #[==[==========================================================
-                        Test Suites
+                        Tests
 ==========================================================#]==]
+function (add_test_file TEST_NAME TEST_FILE)
+    add_executable(${TEST_NAME} ${TEST_FILE})
+    target_link_libraries(${TEST_NAME} PUBLIC octm coverage_config)
+    add_test(${TEST_NAME}_ ${TEST_FILE})
+endfunction()
 
-
-# Const Array Test
-add_executable(test_const_array test_const_array.cpp)
-target_link_libraries(test_const_array PRIVATE octm)
-target_link_libraries(test_const_array PUBLIC coverage_config)
-set_target_properties(test_const_array PROPERTIES COMPILE_FLAGS "--save-temps")
-add_test(test__const_array test_const_array)
-
-
-# Const Map Test
-add_executable(test_const_map test_const_map.cpp)
-target_link_libraries(test_const_map PRIVATE octm)
-target_link_libraries(test_const_map PUBLIC coverage_config)
-set_target_properties(test_const_map PROPERTIES COMPILE_FLAGS "--save-temps")
-add_test(test__const_map test_const_map)
+file(GLOB testfiles "${CMAKE_CURRENT_SOURCE_DIR}/test_*.cpp")
+foreach(file ${testfiles})
+    get_filename_component(filename ${file} NAME)
+    string(REGEX REPLACE "\\.[^.]*$" "" testname ${filename})
+    add_test_file(${testname} ${filename})        
+endforeach()

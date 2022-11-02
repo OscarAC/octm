@@ -9,9 +9,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define test_assert(expr) (static_cast<bool>(expr) ? void(0) : oc::tm::test_assert_print_and_abort(__FILE__, __LINE__))
+#define test_assert(expr) (static_cast<bool>(expr) ? void(0) : oc::ts::test_assert_print_and_abort(__FILE__, __LINE__))
 
-namespace oc::tm
+namespace oc::ts
 {
     static inline void test_assert_print_and_abort(const char * file, unsigned int line)
     {
