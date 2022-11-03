@@ -24,7 +24,7 @@ constexpr int32_t bit_scan_forward(uint32_t value)
     if (!value) {
         return -1;
     }
-    return debruijn_seq[(( value * 0x077CB531ULL) & 0xFFFFFFFF) >> 27];    
+    return debruijn_seq[(( (value & (-static_cast<uint32_t>(value))) * 0x077CB531ULL) & 0xFFFFFFFF) >> 27];
 }
 
 /**
