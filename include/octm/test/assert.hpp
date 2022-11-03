@@ -3,13 +3,13 @@
 // Copyright(c) 2022-present, Oscar A. Carrera.
 // Distributed under the MIT License (http://opensource.org/licenses/MIT)
 
-#ifndef OCTM_ASSERT_H
-#define OCTM_ASSERT_H
+#ifndef OCTM_TEST_ASSERT_H
+#define OCTM_TEST_ASSERT_H
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#define test_assert(expr) (static_cast<bool>(expr) ? void(0) : oc::ts::test_assert_print_and_abort(__FILE__, __LINE__))
+#define TEST_ASSERT(expr) (static_cast<bool>(expr) ? void(0) : oc::ts::test_assert_print_and_abort(__FILE__, __LINE__))
 
 namespace oc::ts
 {

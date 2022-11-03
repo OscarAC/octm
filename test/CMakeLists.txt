@@ -35,7 +35,7 @@ enable_testing()
 function (add_test_file TEST_NAME TEST_FILE)
     add_executable(${TEST_NAME} ${TEST_FILE})
     target_link_libraries(${TEST_NAME} PUBLIC octm coverage_config)
-    add_test(${TEST_NAME}_ ${TEST_FILE})
+    add_test(${TEST_NAME}_ ${TEST_NAME})
 endfunction()
 
 file(GLOB testfiles "${CMAKE_CURRENT_SOURCE_DIR}/test_*.cpp")

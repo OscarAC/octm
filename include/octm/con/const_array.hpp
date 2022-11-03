@@ -1,13 +1,13 @@
-// <octm/arrays.hpp>
+// <octm/con/const_array.hpp>
 // 10/15/2022 - File Creation
 // Copyright(c) 2022-present, Oscar A. Carrera.
 // Distributed under the MIT License (http://opensource.org/licenses/MIT)
 
-#ifndef OCTM_ARRAY_H
-#define OCTM_ARRAY_H
+#ifndef OCTM_CON_CONST_ARRAY_H
+#define OCTM_CON_CONST_ARRAY_H
 
-#include "idioms.hpp"
-#include "types.hpp"
+#include "../idioms.hpp"
+#include "../types.hpp"
 #include <initializer_list>
 #include <utility>
 
