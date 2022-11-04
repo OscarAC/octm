@@ -10,6 +10,7 @@
 #include <stdlib.h>
 
 #define TEST_ASSERT(expr) (static_cast<bool>(expr) ? void(0) : oc::ts::test_assert_print_and_abort(__FILE__, __LINE__))
+#define STATIC_ASSERT(expr) static_assert(expr)
 
 namespace oc::ts
 {
