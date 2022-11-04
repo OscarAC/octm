@@ -3,8 +3,8 @@
 // Copyright(c) 2022-present, Oscar A. Carrera.
 // Distributed under the MIT License (http://opensource.org/licenses/MIT)
 
-#ifndef OCTM_BIT_SCAN_FORWARD_H
-#define OCTM_BIT_SCAN_FORWARD_H
+#ifndef OCTM_BIT_SCAN_H
+#define OCTM_BIT_SCAN_H
 
 #include "../types.hpp"
 
@@ -32,6 +32,12 @@ constexpr int8_t bit_scan_forward(uint64_t value)
     return debruijn_seq[((value & -value) * 0x022fdd63cc95386dUL >> 58)];
 }
 
+
+/**
+ * @brief Bit scan reverse
+ * @param target - the value on which to perform the scan
+ * @return the result of the scan
+ */
 constexpr int8_t bit_scan_reverse(uint64_t value)
 {
     if (!value) {
@@ -60,8 +66,30 @@ namespace x64 {
  */
 inline int64_t bit_scan_forward(uint64_t target)
 {
+    if (!target) {
+        return -1;
+    }
+
     int64_t result;
     __asm__ __volatile__("bsf %0, %1"
+                         : "=r"(result)
+                         : "r"(target));
+    return result;
+}
+
+/**
+ * @brief Bit scan reverse for using the x64 BSR instruction
+ * @param target - the value on which to perform the scan
+ * @return the result of the scan
+ */
+inline int64_t bit_scan_reverse(uint64_t target)
+{
+    if (!target) {
+        return -1;
+    }
+
+    int64_t result;
+    __asm__ __volatile__("bsr %0, %1"
                          : "=r"(result)
                          : "r"(target));
     return result;
