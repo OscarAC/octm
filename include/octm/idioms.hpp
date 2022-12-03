@@ -31,13 +31,6 @@ concept size_gt_zero = requires () {
     N > 0;
 };
 
-template<class T>
-concept is_pair = requires(T t) {
-    t.left;
-    t.right;
-};
-
-
 template <class Type, class... Types>
 struct variadic_reduce
 {

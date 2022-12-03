@@ -10,32 +10,32 @@ void test_constexpr_initializer()
     constexpr const_array a3 = {1, 2, 3};
     constexpr const_array a4{1, 2, 3, 4};
 
-    static_assert(a1.size() == 0);
-    static_assert(a3.size() == 3);
-    static_assert(a4.size() == 4);
+    STATIC_ASSERT(a1.size() == 0);
+    STATIC_ASSERT(a3.size() == 3);
+    STATIC_ASSERT(a4.size() == 4);
 }
 
 void test_constexpr_get()
 {
     constexpr const_array a1{'a', 'b', 'c', 'd'};
-    static_assert(a1.get<0>() == 'a');
-    static_assert(a1.get<1>() == 'b');
-    static_assert(a1.get<2>() == 'c');
-    static_assert(a1.get<3>() == 'd');
-    static_assert(a1[0] == 'a');
-    static_assert(a1[1] == 'b');
-    static_assert(a1[2] == 'c');
-    static_assert(a1[3] == 'd');
+    STATIC_ASSERT(a1.get<0>() == 'a');
+    STATIC_ASSERT(a1.get<1>() == 'b');
+    STATIC_ASSERT(a1.get<2>() == 'c');
+    STATIC_ASSERT(a1.get<3>() == 'd');
+    STATIC_ASSERT(a1[0] == 'a');
+    STATIC_ASSERT(a1[1] == 'b');
+    STATIC_ASSERT(a1[2] == 'c');
+    STATIC_ASSERT(a1[3] == 'd');
 
     constexpr const_array a2{1, 2, 3, 4};
-    static_assert(a2.get<0>() == 1);
-    static_assert(a2.get<1>() == 2);
-    static_assert(a2.get<2>() == 3);
-    static_assert(a2.get<3>() == 4);
-    static_assert(a2[0] == 1);
-    static_assert(a2[1] == 2);
-    static_assert(a2[2] == 3);
-    static_assert(a2[3] == 4);
+    STATIC_ASSERT(a2.get<0>() == 1);
+    STATIC_ASSERT(a2.get<1>() == 2);
+    STATIC_ASSERT(a2.get<2>() == 3);
+    STATIC_ASSERT(a2.get<3>() == 4);
+    STATIC_ASSERT(a2[0] == 1);
+    STATIC_ASSERT(a2[1] == 2);
+    STATIC_ASSERT(a2[2] == 3);
+    STATIC_ASSERT(a2[3] == 4);
 }
 
 void test_constexpr_sizeof()
@@ -45,10 +45,10 @@ void test_constexpr_sizeof()
     constexpr const_array<int, 6> a3 = {1, 2, 3, 4, 5, 6};
     constexpr const_array<long int, 7> a4 = {1, 2, 3, 4, 5, 6, 7};
 
-    static_assert(sizeof(a1) == (sizeof(char) * 4));
-    static_assert(sizeof(a2) == (sizeof(short) * 5));
-    static_assert(sizeof(a3) == (sizeof(int) * 6));
-    static_assert(sizeof(a4) == (sizeof(long int) * 7));
+    STATIC_ASSERT(sizeof(a1) == (sizeof(char) * 4));
+    STATIC_ASSERT(sizeof(a2) == (sizeof(short) * 5));
+    STATIC_ASSERT(sizeof(a3) == (sizeof(int) * 6));
+    STATIC_ASSERT(sizeof(a4) == (sizeof(long int) * 7));
 }
 
 void test_pass_around()

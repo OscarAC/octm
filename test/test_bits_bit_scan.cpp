@@ -1,9 +1,6 @@
 #include <octm/bits/bit_scan.hpp>
 #include <octm/test/assert.hpp>
 
-#include <bitset>
-#include <iostream>
-
 using namespace oc::fn;
 
 void test_bsf_constexpr()

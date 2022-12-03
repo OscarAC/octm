@@ -19,8 +19,8 @@ using ::uint16_t;
 using ::uint32_t;
 using ::uint64_t;
 using ::uint8_t;
-using std::shared_ptr;
 using std::size_t;
+using std::shared_ptr;
 using std::unique_ptr;
 using std::weak_ptr;
 }

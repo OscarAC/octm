@@ -1,4 +1,4 @@
-// <octm/bits/bit_scan_forward.hpp>
+// <octm/bits/bit_scan.hpp>
 // 10/15/2022 - File Creation
 // Copyright(c) 2022-present, Oscar A. Carrera.
 // Distributed under the MIT License (http://opensource.org/licenses/MIT)

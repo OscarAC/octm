@@ -37,9 +37,8 @@ struct const_array final : with_const_size<N> {
     {
     }
 
-    constexpr const T &
-    operator[](const size_t I) const noexcept
-    {
+    constexpr const T &operator[](const size_t I) const noexcept
+    {        
         return mem_[I];
     }
 
@@ -49,8 +48,7 @@ struct const_array final : with_const_size<N> {
     }
 
     template <size_t I>
-    constexpr const T &
-    get() const
+    constexpr const T &get() const
     {
         static_assert(I < N);
         return mem_[I];
