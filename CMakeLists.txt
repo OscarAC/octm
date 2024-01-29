@@ -1,42 +1,30 @@
-cmake_minimum_required(VERSION 3.22)
-project(octm)
+cmake_minimum_required(VERSION 3.28)
+project(octm CXX)
 
 
 #[==[==========================================================
                         CMake Config
 ==========================================================#]==]
-include(CMakePackageConfigHelpers)
-
-set (CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS ON)
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-
-
-#[==[==========================================================
-                        Doxygen
-==========================================================#]==]
-find_package(Doxygen)
-if(Doxygen_FOUND)
-    add_subdirectory(docs)
-else()
-    message(STATUS "Doxygen not found, skipping documentation generation")
-endif()
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
 #[==[==========================================================
                         OCTM Lib
 ==========================================================#]==]
-add_library(octm INTERFACE)
-target_include_directories(octm INTERFACE include)
-target_compile_options(octm INTERFACE -Wall)
+add_library(octm)
+target_sources(octm PUBLIC FILE_SET CXX_MODULES FILES   source/octm.cpp
+                                                        source/idioms.cpp
+                                                        source/const_array.cpp                                                        
+                                                        source/bit_scan.cpp
+                                                        source/assert.cpp)
+
+target_compile_options(octm PUBLIC -O3 -Wall -fno-exceptions -save-temps -fverbose-asm)
 
 
 #[==[==========================================================
                     Build Tests
 ==========================================================#]==]
-enable_testing()
 add_subdirectory(test)

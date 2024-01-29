@@ -1,6 +1,5 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.28)
 project(octm_tests CXX)
-
 
 if(NOT TARGET octm)
     find_package(octm REQUIRED)
