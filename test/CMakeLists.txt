@@ -1,39 +1,29 @@
-cmake_minimum_required(VERSION 3.28)
-project(octm_tests CXX)
-
 if(NOT TARGET octm)
     find_package(octm REQUIRED)
 endif()
 
-
-#[==[==========================================================
-                        CTest Config
-==========================================================#]==]
 include(CTest)
 
-add_library(coverage_config INTERFACE)
+add_library(octm_coverage_config INTERFACE)
 option(CODE_COVERAGE "Enable coverage reporting" OFF)
 if(CODE_COVERAGE)
-    target_compile_options(coverage_config INTERFACE
+    target_compile_options(octm_coverage_config INTERFACE
     -O0        # no optimization
     -g         # generate debug info
     --coverage # sets all required flags
     )
     if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
-        target_link_options(coverage_config INTERFACE --coverage)
+        target_link_options(octm_coverage_config INTERFACE --coverage)
     else()
-        target_link_libraries(coverage_config INTERFACE --coverage)
+        target_link_libraries(octm_coverage_config INTERFACE --coverage)
     endif()
 endif()
 
 enable_testing()
 
-#[==[==========================================================
-                        Tests
-==========================================================#]==]
 function (add_test_file TEST_NAME TEST_FILE)
     add_executable(${TEST_NAME} ${TEST_FILE})
-    target_link_libraries(${TEST_NAME} PUBLIC octm coverage_config)
+    target_link_libraries(${TEST_NAME} PUBLIC octm octm_coverage_config)
     add_test(${TEST_NAME}_ ${TEST_NAME})
 endfunction()
 

@@ -1,30 +1,19 @@
 cmake_minimum_required(VERSION 3.28)
 project(octm CXX)
 
-
-#[==[==========================================================
-                        CMake Config
-==========================================================#]==]
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
-#[==[==========================================================
-                        OCTM Lib
-==========================================================#]==]
-add_library(octm)
-target_sources(octm PUBLIC FILE_SET CXX_MODULES FILES   source/octm.cpp
-                                                        source/idioms.cpp
-                                                        source/const_array.cpp                                                        
-                                                        source/bit_scan.cpp
-                                                        source/assert.cpp)
+add_subdirectory(source)
 
-target_compile_options(octm PUBLIC -O3 -Wall -fno-exceptions -save-temps -fverbose-asm)
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+  option(OCTM_BUILD_TESTS "whether or not tests should be built" ON)
 
+  if(OCTM_BUILD_TESTS)
+    add_subdirectory(test)
+  endif()
 
-#[==[==========================================================
-                    Build Tests
-==========================================================#]==]
-add_subdirectory(test)
+endif()
