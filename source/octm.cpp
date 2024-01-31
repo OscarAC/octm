@@ -7,3 +7,4 @@ export import :idioms;
 export import :const_array;
 export import :bit_scan;
 export import :assert;
+export import :fundamental_holder;

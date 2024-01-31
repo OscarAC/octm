@@ -4,6 +4,7 @@
 module;
 #include <stdint.h>
 #include <stddef.h>
+#include <type_traits>
 
 export module octm:idioms;
 
@@ -13,11 +14,17 @@ struct with_const_size
     inline constexpr size_t size() const noexcept { return N; }
 };
 
-export template<class T>
-concept has_size = requires (T t) { t.size(); };
+
+export template<class Type>
+concept has_size = requires (Type t) { t.size(); };
+
 
 export template <size_t N>
 concept size_gt_zero = requires () { N > 0; };
+
+
+export template <class Type>
+concept fundamental = std::is_fundamental_v<Type>;
 
 
 // TODO assert Type == Types..
