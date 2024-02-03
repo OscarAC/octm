@@ -13,6 +13,14 @@ void test_construction()
     test_assert(fa == -1);
 }
 
+void test_construction2()
+{
+  int fa = 10;
+  fundamental_holder<int, -1> i;
+  i = fa;
+  
+}
+
 void test_move()
 {
     int fa = 7;
@@ -41,6 +49,7 @@ int main(int, char **)
 {
 
     test_construction();
+    test_construction2();
     test_move();
     test_comparison();
 

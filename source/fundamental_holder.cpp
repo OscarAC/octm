@@ -33,6 +33,13 @@ public:
     value = other;
     other = Invalidator;
   }
+
+  fundamental_holder & operator = (fundamental_t &other) noexcept
+  {
+    value = other;
+    other = Invalidator;
+    return *this;
+  }
   
   fundamental_holder(fundamental_holder &) = delete;
   fundamental_holder &operator=(fundamental_holder &) = delete;
